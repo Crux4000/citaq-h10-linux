@@ -1,0 +1,20 @@
+#!/bin/busybox sh
+# Citaq H10-3 mainline Linux test initramfs (static arm64 busybox).
+/bin/busybox --install -s /bin
+export PATH=/bin:/sbin
+mkdir -p /proc /sys /dev /tmp
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs tmp /tmp
+echo
+echo "=================================================="
+echo " Citaq H10-3: mainline Linux"
+uname -a
+echo " uptime: $(cut -d' ' -f1 /proc/uptime)s  cpus: $(grep -c ^processor /proc/cpuinfo)"
+echo " $(grep MemTotal /proc/meminfo)"
+echo " model: $(cat /proc/device-tree/model 2>/dev/null)"
+echo "=================================================="
+echo " Shell below is on the serial console. 'reboot -f' = back to Android"
+echo
+exec setsid cttyhack sh

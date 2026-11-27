@@ -1,0 +1,6 @@
+out/
+*.o
+*.elf
+stub/reloc.bin
+*.img
+__pycache__/

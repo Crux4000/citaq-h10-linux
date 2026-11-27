@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Citaq H10-3 (ex-Menulog POS terminal), board CTE-RK3368-V1.0.
+ * First-light DT: CPUs, memory, debug UART2 (TP17/18/19, 115200) and eMMC only.
+ * Display (LVDS 1024x768), touch (ilitek @ i2c2 0x41), RK818 PMIC, USB, Ethernet,
+ * Wi-Fi and the printer UART are deliberately NOT described yet - the vendor
+ * U-Boot has already powered everything we need.
+ *
+ * Builds against mainline arch/arm64/boot/dts/rockchip/rk3368.dtsi (tested 5.4, 6.18).
+ */
+/dts-v1/;
+#include "rk3368.dtsi"
+
+/ {
+	model = "Citaq H10-3";
+	compatible = "citaq,h10-3", "rockchip,rk3368";
+
+	chosen {
+		stdout-path = "serial2:115200n8";
+	};
+
+	/* 0x0-0x200000 belongs to the vendor ATF (trust.img) */
+	memory@200000 {
+		device_type = "memory";
+		reg = <0x0 0x00200000 0x0 0x7fe00000>;
+	};
+};
+
+&uart2 {
+	status = "okay";
+};
+
+&emmc {
+	bus-width = <8>;
+	cap-mmc-highspeed;
+	no-sdio;
+	no-sd;
+	non-removable;
+	pinctrl-names = "default";
+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
+	status = "okay";
+};
