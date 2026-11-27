@@ -1,5 +1,7 @@
 # citaq-h10-linux
 
+[![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20me%20a%20coffee-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/crux40000)
+
 Mainline Linux on the Citaq H10-3 POS terminal (Rockchip RK3368, board CTE-RK3368-V1.0),
 booting from the **stock** U-Boot with no bootloader swap.
 
@@ -48,6 +50,10 @@ recovery slot, so stock Android or the Android 10 port keeps booting normally.
 - `reboot -f` from the Linux shell goes straight back to normal boot.
 - A kernel that hangs before init needs a full power cycle, which means the backup LiPo
   as well as the 24 V supply. Keep the inline switch on the LiPo lead.
+
+## Support
+
+This project is free and always will be. If it saved a terminal from landfill or saved you some time, you can [buy me a coffee](https://ko-fi.com/crux40000). It goes towards test hardware and late-night debugging.
 
 ## Licence
 
